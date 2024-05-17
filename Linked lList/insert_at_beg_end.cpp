@@ -2,30 +2,46 @@
 using namespace std;
 
 class Node{
-    public: 
+    public:
     int data;
     Node *next;
 
-    Node(int data)
+    Node(int d)
     {
-        this->data = data;
-        this->next = NULL;  
+        this->data = d;
+        this->next = NULL;
     }
 };
-void inseratbegin(Node *&head,int d)
+void insertatbeg(Node *&head,int val) ///Insert at beginning
 {
-    Node *temp = new Node(d);
+    if(head==NULL)
+    {
+        Node *temp = new Node(val);
+        temp->next = NULL;
+    }
+    Node *temp = new Node(val);
     temp->next = head;
-    head=temp;
+    head = temp;
 }
-void insertatend(Node *&tail,int d)
-{
-    Node *temp = new Node(d);
-    //temp->next = NULL;
-    tail->next = temp;
-    tail = temp;
 
+void insertatend(Node *&head,int val)
+{
+    Node *temp1;
+    if(head==NULL)
+    {
+        Node *temp = new Node(val);
+        temp->next = NULL;
+    }
+    Node *temp = new Node(val);
+
+    temp1 = head;
+    while(temp1->next!=NULL)
+    {
+        temp1=temp1->next;
+    }
+    temp1->next = temp;
 }
+
 void print(Node *&head)
 {
     Node *temp = head;
@@ -38,33 +54,14 @@ void print(Node *&head)
 }
 int main()
 {
-    Node *node1 = new Node(10);
-   // node *node1 = new node(20);
-   Node * head = node1;
-   Node *tail = node1;
+    Node *head = NULL;
+    //Node *node1=new Node(10);
 
-    inseratbegin(head,69);
-    print(head);
-    //cout<<endl;
-
-    inseratbegin(head,11);
+    insertatbeg(head,10);
     print(head);
 
-    inseratbegin(head,20);
+    insertatend(head,30);
     print(head);
 
-    inseratbegin(head,9);
-    print(head);
 
-    insertatend(tail,25);
-    print(head);
-
-    insertatend(tail,50);
-    print(head);
-
-    insertatend(tail,12);
-    print(head);
-
-    insertatend(tail,36);
-    print(head);
 }
