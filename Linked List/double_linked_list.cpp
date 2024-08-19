@@ -137,16 +137,17 @@ void deleteatpos(Node *&head,int pos)
 
 void reverse(Node *&head)
 {
-    Node *current = head;
-    Node *temp=NULL;
-    while(current!=NULL)
-    {
-        temp = current->prev;
-        current->prev = current->next;
-        current->next = temp;
-        current = current->prev;
+    Node *curr = head;
+    Node *prev = NULL
+    Node *next = NULL;
+    while(curr!=NULL){
+        next = curr->next;
+        curr->next = prev;
+        curr->prev = next;
+        prev = curr;
+        cur = next;
     }
-    head = temp->prev;
+    head = prev;
 }
 
 void display(Node *&head)
