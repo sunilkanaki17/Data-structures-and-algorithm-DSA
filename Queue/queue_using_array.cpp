@@ -5,70 +5,67 @@ using namespace std;
 
 class queue{
     public:
+    int arr[100];
     int front;
     int rear;
-    int arr[n];
     
     queue()
     {
-        front = -1;
-        rear = -1;
+        front=0;
+        rear=0;
     }
-    void enqueue(int val)
+    
+    void enqueue(int x)
     {
-        if(rear==n-1)
-            cout<<"Queue full"<<endl;
+        if(rear==n)
+            cout<<"overflow"<<endl;
         else
         {
-            if(front==-1 && rear==-1)
-            {
-                rear++;
-                front++;
-            }
-            else
-            {
-                rear++;
-                
-            }
-            arr[rear] = val;
+            arr[rear++] = x;
         }
     }
-    void dequeue()
+    
+    int dequeue()
     {
-        if(front==-1 && rear==-1)
-            cout<<"Queue empty"<<endl;
+        int x;
+        if(front==0 && rear==0)
+        {
+            cout<<"Empty"<<endl;
+            return -1;
+        }
         else
         {
-            for(int i=0;i<rear;i++)
+            
+            x = arr[front];
+            arr[front] = -1;
+            front++;
+            if(front==rear)
             {
-                arr[i] = arr[i+1];
+                front =0 ; rear=0;
             }
-            rear--;
-        }
+
+            }
+        return x;
     }
-    int frontele()
-    {
-        return arr[front];
-    }
-    int rearele()
-    {
-        return arr[rear];
-    }
+    
 };
 int main() {
-    
     queue q;
+    
     q.enqueue(10);
     q.enqueue(20);
     q.enqueue(30);
     q.enqueue(40);
     q.enqueue(50);
     q.enqueue(60);
-    cout<<q.frontele()<<endl;
-    cout<<q.rearele()<<endl;
-    q.dequeue();
-    q.dequeue();
-    cout<<q.frontele()<<endl;
-    cout<<q.rearele();
-    return 0;
+    cout<<q.dequeue()<<endl;
+    cout<<q.dequeue()<<endl;
+    cout<<q.dequeue()<<endl;
+    cout<<q.dequeue()<<endl;
+    //cout<<q.dequeue()<<endl;
+    q.enqueue(17);
+    //cout<<q.dequeue()<<endl;
+    //cout<<q.dequeue()<<endl;
+    
+    
 }
